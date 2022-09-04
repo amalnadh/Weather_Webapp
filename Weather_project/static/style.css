@@ -1,0 +1,16 @@
+.heading{
+background-color:#B0C8F6;
+width :100%;
+height:150px;
+margin-bottom:50px;
+
+
+}
+.heading-text{
+  font-family: "Lucida Console", "Courier New", monospace;
+top:30%;
+left:50%;
+position:absolute;
+transform:transform;
+
+}

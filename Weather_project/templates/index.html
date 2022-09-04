@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    City Weather
+                </h1>
+            </div>
+        </div>
+    </section>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+             <form method="POST" class="p-3 shadow">
+            {% csrf_token %}
+                 <div class="field has-addons">
+                     <div class="control is-expanded">
+                         {{form.city_name}}
+                     </div>
+                            <div class="control">
+                                <button type="submit" class="button is-info">
+                                    Add City
+                                </button>
+                            </div>
+
+                 </div>
+                    <div class="alert alert-info" role="alert">
+                        Please try to add Popular Cities only!
+                    </div>
+             </form>
+
+
+        </div>
+        <div class="col-md-6">
+            <h5 class="display-5 text-muted"><em>City Weather</em></h5>
+
+            {% for city_weather in weather_data %}
+
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{city_weather.icon}}.png" alt="Image">
+                                </figure>
+                    </div>
+                        <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{city_weather.city}}</span>
+                                        <br>
+                                        <span class="subtitle">{{city_weather.temperature}}° C</span><br>
+                                         <span class="subtitle">{{city_weather.humidity}}%- Humidity</span>
+
+                                        <br> <span>{{city_weather.description}}</span><br>
+                                        <a href="{% url 'delete' city_weather.id %}" class="btn btn-danger">Delete</a>
+
+
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
